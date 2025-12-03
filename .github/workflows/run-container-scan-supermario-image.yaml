@@ -26,6 +26,7 @@ jobs:
         run: |
           docker pull docker.io/aquarellfantasiagithub/eriksprojectrepo:${{ env.VERSION }}
           docker save -o supermariolatestdockerimage.tar docker.io/aquarellfantasiagithub/eriksprojectrepo:${{ env.VERSION }}
+          ls -lh supermariolatestdockerimage.tar
 
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
