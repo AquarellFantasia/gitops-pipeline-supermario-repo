@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: supermariogamedeployement
+      app: supermariogame
   template:
     metadata:
       labels:
-        app: supermariogamedeployement
+        app: supermariogame
     spec:
       containers:
       - image: araquarellfantasiagithub/eriksprojectrepo:2
@@ -25,7 +25,7 @@ metadata:
   name: supermariogame-service
 spec:
   selector:
-    app: supermariogamedeployement
+    app: supermariogame
   ports:
   - protocol: TCP
     port: 8600  # <-- Change this line to your desired port
