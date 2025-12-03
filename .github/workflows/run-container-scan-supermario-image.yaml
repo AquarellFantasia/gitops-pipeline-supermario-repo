@@ -25,12 +25,12 @@ jobs:
         shell: bash -eux {0}
         run: |
           docker pull docker.io/aquarellfantasiagithub/eriksprojectrepo:${{ env.VERSION }}
-          docker save -o /github/workspace/supermariolatestdockerimage.tar docker.io/aquarellfantasiagithub/eriksprojectrepo:${{ env.VERSION }}
+          docker save -o $GITHUB_WORKSPACE/supermariolatestdockerimage.tar docker.io/aquarellfantasiagithub/eriksprojectrepo:${{ env.VERSION }}
 
       - name: Validate docker image exists
         shell: bash -eux {0}
         run: |
-          if [ ! -f /github/workspace/supermariolatestdockerimage.tar ]; then
+          if [ ! -f $GITHUB_WORKSPACE/supermariolatestdockerimage.tar ]; then
             echo "Docker image does not exist"
             exit 1
           fi
@@ -38,6 +38,6 @@ jobs:
       - name: Run Trivy vulnerability scanner in tarball mode
         uses: aquasecurity/trivy-action@master
         with:
-          input: /github/workspace/supermariolatestdockerimage.tar
+          input: $GITHUB_WORKSPACE/supermariolatestdockerimage.tar
           exit-code: '0'
           severity: 'CRITICAL,HIGH'
